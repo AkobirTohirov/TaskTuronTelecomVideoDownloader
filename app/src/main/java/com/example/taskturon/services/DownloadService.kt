@@ -51,7 +51,6 @@ class DownloadService : LifecycleService() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-
         intent?.let {
             when (intent.action) {
 
@@ -213,8 +212,8 @@ class DownloadService : LifecycleService() {
     }
 
     private fun pauseDownloading() {
-        /*PRDownloader.pause(downloadingId)
-        status = Paused*/
+        PRDownloader.pause(downloadingId)
+        status = Paused
     }
 
 

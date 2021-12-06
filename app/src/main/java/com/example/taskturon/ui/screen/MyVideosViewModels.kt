@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MyVideosViewModel @Inject constructor(
-    private val getAllVideos: GetAllVideosUseCase
+      getAllVideos: GetAllVideosUseCase
 ) : BaseViewModel() {
 
     val videosLiveData: LiveData<List<VideoEntity>> = getAllVideos().asLiveData()

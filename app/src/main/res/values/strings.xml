@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VideoDownloader</string>
+    <string name="app_name">Video\nDownloader</string>
     <string name="downloading">Downloading...</string>
     <string name="time_divider">/</string>
     <string name="_32k_views">32K views</string>

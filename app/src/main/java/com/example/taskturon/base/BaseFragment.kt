@@ -24,17 +24,15 @@ abstract class BaseFragment(@LayoutRes layoutId: Int) :
     protected abstract val viewModel: BaseViewModel
 
     private lateinit var sharedViewModel: SharedViewModel
-    private var position = -1
 
     protected open val navController: NavController by lazy(LazyThreadSafetyMode.NONE) {
         findNavController()
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         hideKeyboard()
-        setStatusBarColor(R.color.black)
+        setStatusBarColor(R.color.colorStatusBar)
         sharedViewModel = (requireActivity() as MainActivity).sharedViewModel
         viewModel.navigate.observe(viewLifecycleOwner, navigateObserver)
         initialize()
@@ -51,9 +49,7 @@ abstract class BaseFragment(@LayoutRes layoutId: Int) :
                 command.inclusive
             )
         }
-
     }
-
 
     override fun onDestroyView() {
         hideKeyboard()
@@ -67,7 +63,7 @@ abstract class BaseFragment(@LayoutRes layoutId: Int) :
             manager.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
-    protected fun setStatusBarColor(@ColorRes color: Int) {
+    private fun setStatusBarColor(@ColorRes color: Int) {
         activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(), color)
     }
 
@@ -92,16 +88,11 @@ abstract class BaseFragment(@LayoutRes layoutId: Int) :
         }
     }
 
-    override fun onClick(p0: View?) {
-
-    }
+    override fun onClick(p0: View?) {}
 
     protected var isLoading: Boolean
         set(value) {
             (activity as MainActivity).isLoading = value
         }
         get() = (activity as MainActivity).isLoading
-
-    private var errorShown = false
-
 }

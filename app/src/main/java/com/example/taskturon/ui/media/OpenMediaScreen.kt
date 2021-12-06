@@ -54,22 +54,13 @@ class OpenMediaScreen : BaseFragment(R.layout.screen_open_media) {
         }
     }
 
-
-    override fun onClick(p0: View?) {
-
-    }
+    override fun onClick(p0: View?) {}
 
     private fun initializePlayer(){
-
         player = SimpleExoPlayer.Builder(requireContext()).build()
         playerView.player = player
 
         val media: MediaSource
-
-        val bandWidthMeter = DefaultBandwidthMeter()
-
-        val videoTrackSelectionFactory: TrackSelection.Factory =
-            AdaptiveTrackSelection.Factory()
 
         val extractorsFactory = DefaultExtractorsFactory()
 
@@ -102,11 +93,6 @@ class OpenMediaScreen : BaseFragment(R.layout.screen_open_media) {
         player?.seekTo(currentWindow, playbackPosition)
         player!!.prepare()
     }
-
-    fun pausePlayer() {
-        player?.playWhenReady = false
-    }
-
 
     private fun releasePlayer() {
         if (player != null) {

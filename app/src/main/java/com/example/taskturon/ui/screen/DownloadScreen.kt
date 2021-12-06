@@ -1,6 +1,7 @@
 package com.example.taskturon.ui.screen
 
 import android.content.Intent
+import android.util.Log
 import android.util.Patterns
 import android.webkit.URLUtil
 import androidx.fragment.app.viewModels
@@ -11,16 +12,22 @@ import com.example.taskturon.base.BaseFragment
 import com.example.taskturon.repo.model.*
 import com.example.taskturon.services.DownloadService
 import com.example.taskturon.ui.BottomNavScreenDirections
+import com.example.taskturon.utils.Const.ACTION_PAUSE_DOWNLOADING
 import com.example.taskturon.utils.Const.ACTION_START_DOWNLOADING
 import com.example.taskturon.utils.Const.ACTION_STOP_DOWNLOADING
 import com.example.taskturon.utils.Const.VIDEO_DATA
-import com.example.taskturon.utils.extensions.*
+import com.example.taskturon.utils.extensions.activityNavController
+import com.example.taskturon.utils.extensions.gone
+import com.example.taskturon.utils.extensions.stringText
+import com.example.taskturon.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.page_download.*
 import java.util.*
 
 @AndroidEntryPoint
 class DownloadScreen : BaseFragment(R.layout.page_download) {
+    private var videoTitle = ""
+    private var videoUrl = ""
 
     override val viewModel: DownloadViewModel by viewModels()
     override val navController: NavController by activityNavController(R.id.navHostFragment)
@@ -61,7 +68,6 @@ class DownloadScreen : BaseFragment(R.layout.page_download) {
                             tvPercentage.text = ("${status.percentage}%")
                             pbDownloading.progress = status.percentage
                         }
-
                         is Canceled -> {
                             llVideo.gone()
                             btCheck.visible()
@@ -69,13 +75,8 @@ class DownloadScreen : BaseFragment(R.layout.page_download) {
                             inputUrl.setText("")
                             message(status.message)
                         }
-
-                        is Success -> {
-
-                        }
-
+                        is Success -> {}
                         Paused -> {
-
                         }
                     }
                 }
@@ -87,18 +88,17 @@ class DownloadScreen : BaseFragment(R.layout.page_download) {
         }
 
         btPause.setOnClickListener {
-
+            sendCommandToService(ACTION_PAUSE_DOWNLOADING)
         }
 
         btResume.setOnClickListener {
-
+            sendCommandToService(ACTION_START_DOWNLOADING)
         }
 
         btPlay.setOnClickListener {
             val dir = BottomNavScreenDirections.globalOpenMedia(videoUrl)
             viewModel.navigateTo(dir)
         }
-
     }
 
 
@@ -156,8 +156,5 @@ class DownloadScreen : BaseFragment(R.layout.page_download) {
             requireContext().startService(it)
         }
     }
-
-    private var videoTitle = ""
-    private var videoUrl = ""
 
 }

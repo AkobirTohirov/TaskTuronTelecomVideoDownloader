@@ -1,8 +1,7 @@
 package com.example.taskturon.base
 
 import android.media.MediaMetadataRetriever
-import androidx.annotation.IdRes
-import androidx.lifecycle.MutableLiveData
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
