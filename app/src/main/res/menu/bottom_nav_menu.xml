@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/downloadPage"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/main_add_video_image_fragment"
+        android:enabled="true"
+        android:checked="false"
+        android:title="" />
+
+    <item
+        android:id="@+id/downloadsPage"
+        android:enabled="true"
+        android:icon="@drawable/ic_videos_library"
+        android:title="Downloads" />
+
+</menu>

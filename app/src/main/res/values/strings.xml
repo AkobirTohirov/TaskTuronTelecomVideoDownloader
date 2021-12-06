@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">VideoDownloader</string>
+    <string name="downloading">Downloading...</string>
+    <string name="time_divider">/</string>
+    <string name="_32k_views">32K views</string>
+    <string name="_13_43">13:43</string>
+</resources>

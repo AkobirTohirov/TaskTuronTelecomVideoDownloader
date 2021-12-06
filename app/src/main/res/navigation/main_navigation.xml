@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/bottomNavScreen">
+
+    <action
+        android:id="@+id/globalHome"
+        app:destination="@id/bottomNavScreen"
+        app:popUpTo="@id/main_navigation"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/globalOpenMedia"
+        app:destination="@id/openMediaScreen">
+        <argument
+            android:name="itemUrl"
+            app:argType="string"
+            app:nullable="false" />
+    </action>
+
+    <fragment
+        android:id="@+id/bottomNavScreen"
+        android:name="com.example.taskturon.ui.BottomNavScreen"
+        android:label="BottomNavScreen"
+        tools:layout="@layout/screen_bottom_nav" />
+    <fragment
+        android:id="@+id/openMediaScreen"
+        android:name="com.example.taskturon.ui.media.OpenMediaScreen"
+        android:label="OpenMediaScreen"
+        tools:layout="@layout/screen_open_media">
+        <argument
+            android:name="itemUrl"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+</navigation>
